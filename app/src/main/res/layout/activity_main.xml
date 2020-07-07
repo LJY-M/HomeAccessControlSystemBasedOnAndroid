@@ -16,4 +16,37 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <Button
+    android:id="@+id/main_button_open_door"
+    android:layout_width="300dp"
+    android:layout_height="400dp"
+    android:layout_marginLeft="52dp"
+    android:layout_marginTop="96dp"
+    android:text="开门"
+    android:textSize="32sp"
+    app:layout_constraintLeft_toLeftOf="parent"
+    app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/main_button_apply_access"
+        android:layout_width="300dp"
+        android:layout_height="75dp"
+        android:layout_marginLeft="52dp"
+        android:layout_marginTop="30dp"
+        android:text="申请访问"
+        android:textSize="32sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/main_button_open_door" />
+
+    <Button
+        android:id="@+id/main_button_manage_login"
+        android:layout_width="300dp"
+        android:layout_height="75dp"
+        android:layout_marginLeft="52dp"
+        android:layout_marginTop="30dp"
+        android:text="管理入口"
+        android:textSize="32sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/main_button_apply_access" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
