@@ -2,6 +2,7 @@ package com.example.homeaccesscontrolsystembasedonandroid;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -9,7 +10,7 @@ import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
 
-    String TAG = "MainActivity";
+    String TAG = "  MainActivity";
 
     private Button OpenDoorButton;
     private Button ApplyAccessButton;
@@ -19,6 +20,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        Log.i(TAG, "This is MainActivity.");
 
         OpenDoorButton = findViewById(R.id.main_button_open_door);
         OpenDoorButton.setOnClickListener(this);
@@ -37,6 +40,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.main_button_apply_access:
                 Log.i(TAG, "Clicked Button Apply Access.");
+                Intent intentToApplyAccessActivity = new Intent(MainActivity.this, ApplyAccessActivity.class);
+                startActivity(intentToApplyAccessActivity);
                 break;
             case  R.id.main_button_manage_login:
                 Log.i(TAG, "Clicked Button Manage Login.");
