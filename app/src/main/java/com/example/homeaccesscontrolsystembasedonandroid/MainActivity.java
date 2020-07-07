@@ -3,6 +3,7 @@ package com.example.homeaccesscontrolsystembasedonandroid;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -29,6 +30,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         ApplyAccessButton.setOnClickListener(this);
         ManageLoginButton = findViewById(R.id.main_button_manage_login);
         ManageLoginButton.setOnClickListener(this);
+
+        String[] PERMISSIONS = {
+                "android.permission.READ_EXTERNAL_STORAGE",
+                "android.permission.WRITE_EXTERNAL_STORAGE" };
+        int REQUEST_CODE_CONTACT = 101;
+        for(String str : PERMISSIONS) {
+            if (this.checkSelfPermission(str) != PackageManager.PERMISSION_GRANTED) {
+                this.requestPermissions(PERMISSIONS, REQUEST_CODE_CONTACT);
+            }
+        }
     }
 
     @Override
