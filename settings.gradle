@@ -1,0 +1,2 @@
+include ':app'
+rootProject.name='Home access control system based on Android'
