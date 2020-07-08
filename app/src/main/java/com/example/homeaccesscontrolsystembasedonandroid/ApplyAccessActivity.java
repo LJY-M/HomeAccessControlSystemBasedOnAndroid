@@ -90,6 +90,7 @@ public class ApplyAccessActivity extends AppCompatActivity implements View.OnCli
                     Log.i(TAG, "备注内容为空.");
                     break;
                 }
+                Toast.makeText(this, "正在发送申请，请稍等片刻。", Toast.LENGTH_LONG).show();
                 new Thread(new Runnable() {
 
                     @Override
@@ -97,12 +98,12 @@ public class ApplyAccessActivity extends AppCompatActivity implements View.OnCli
                         try {
                             EmailSender sender = new EmailSender();
                             //设置服务器地址和端口，网上搜的到
-                            sender.setProperties("smtp.qq.com", "25");
+                            sender.setProperties("smtp.qq.com", "465");
                             //分别设置发件人，邮件标题和文本内容
                             sender.setMessage("2958146072@qq.com", "有一份访客申请等待处理", remarkString);
                             //设置收件人的邮箱
 
-                            sender.setReceiver(new String[]{"ljy_miao@whut.edu.cn"});
+                            sender.setReceiver(new String[]{"ljy_miao@foxmail.com"});
                             String filPath = "/storage/emulated/0/DCIM/Camera/123456.JPG";
                             File file = new File(filPath);
                             if(file.exists()) {
@@ -125,6 +126,7 @@ public class ApplyAccessActivity extends AppCompatActivity implements View.OnCli
                         }
                     }
                 }).start();
+
                 break;
         }
     }

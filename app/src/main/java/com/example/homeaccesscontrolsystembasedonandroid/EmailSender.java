@@ -35,6 +35,11 @@ public class EmailSender {
         this.properties.put("mail.smtp.post",post);
         //是否验证
         this.properties.put("mail.smtp.auth",true);
+        this.properties.setProperty("mail.debug", "true");//启用调试
+        this.properties.setProperty("mail.smtp.timeout", "10000");//设置链接超时
+        this.properties.setProperty("mail.smtp.socketFactory.port", post);//设置ssl端口
+        this.properties.setProperty("mail.smtp.socketFactory.fallback", "false");
+        this.properties.setProperty("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
         this.session= Session.getInstance(properties);
         this.message = new MimeMessage(session);
         this.multipart = new MimeMultipart("mixed");

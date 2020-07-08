@@ -32,9 +32,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         ManageLoginButton.setOnClickListener(this);
 
         String[] PERMISSIONS = {
+                "android.permission.CAMERA",
                 "android.permission.READ_EXTERNAL_STORAGE",
                 "android.permission.WRITE_EXTERNAL_STORAGE",
-                "android.permission.INTERNET"};
+                "android.permission.INTERNET",
+                "android.permission.RECEIVE_SMS",
+                "android.permission.READ_SMS"};
         int REQUEST_CODE_CONTACT = 101;
         for(String str : PERMISSIONS) {
             if (this.checkSelfPermission(str) != PackageManager.PERMISSION_GRANTED) {
