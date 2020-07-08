@@ -33,7 +33,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         String[] PERMISSIONS = {
                 "android.permission.READ_EXTERNAL_STORAGE",
-                "android.permission.WRITE_EXTERNAL_STORAGE" };
+                "android.permission.WRITE_EXTERNAL_STORAGE",
+                "android.permission.INTERNET"};
         int REQUEST_CODE_CONTACT = 101;
         for(String str : PERMISSIONS) {
             if (this.checkSelfPermission(str) != PackageManager.PERMISSION_GRANTED) {

@@ -27,6 +27,9 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
+import javax.mail.MessagingException;
+import javax.mail.internet.AddressException;
+
 public class ApplyAccessActivity extends AppCompatActivity implements View.OnClickListener{
 
     String TAG = "  ApplyAccessActivity";
@@ -39,6 +42,8 @@ public class ApplyAccessActivity extends AppCompatActivity implements View.OnCli
     String fileName = Environment.getExternalStorageDirectory().getPath()+"/DCIM/Camera/"+ "123456.jpg";
 
     final int TAKE_PICTURE = 1;
+
+    private int imageFlag = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,12 +79,52 @@ public class ApplyAccessActivity extends AppCompatActivity implements View.OnCli
                 break;
             case R.id.apply_access_commit_apply:
                 Log.i(TAG, "Clicked Button Commit Apply.");
-                String remarkString = remarkEditText.getText().toString();
+                final String remarkString = remarkEditText.getText().toString();
+                if (imageFlag == 0) {
+                    Toast.makeText(this, "图片不能为空！", Toast.LENGTH_SHORT).show();
+                    Log.i(TAG, "图片为空.");
+                    break;
+                }
                 if (remarkString.isEmpty()) {
                     Toast.makeText(this, "备注内容不能为空！", Toast.LENGTH_SHORT).show();
                     Log.i(TAG, "备注内容为空.");
                     break;
                 }
+                new Thread(new Runnable() {
+
+                    @Override
+                    public void run() {
+                        try {
+                            EmailSender sender = new EmailSender();
+                            //设置服务器地址和端口，网上搜的到
+                            sender.setProperties("smtp.qq.com", "25");
+                            //分别设置发件人，邮件标题和文本内容
+                            sender.setMessage("2958146072@qq.com", "有一份访客申请等待处理", remarkString);
+                            //设置收件人的邮箱
+
+                            sender.setReceiver(new String[]{"ljy_miao@whut.edu.cn"});
+                            String filPath = "/storage/emulated/0/DCIM/Camera/123456.JPG";
+                            File file = new File(filPath);
+                            if(file.exists()) {
+                                Log.d(TAG,"file.exists()------>>>>>>");
+                                //添加附件
+                                //这个附件的路径是我手机里的啊，要发你得换成你手机里正确的路径
+                                sender.addAttachment(filPath);
+
+                            } else {
+                                Log.d(TAG,"file.notexists()------>>>>>>");
+                            }
+
+                            //发送邮件,sender.setMessage("你的163邮箱账号", "Email//Sender", "Java Mail ！");这里面两个邮箱账号要一致
+                            sender.sendEmail("smtp.qq.com", "2958146072@qq.com", "bgscscijdzhadgcg");
+
+                        } catch (AddressException e) {
+                            e.printStackTrace();
+                        } catch (MessagingException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }).start();
                 break;
         }
     }
@@ -93,6 +138,7 @@ public class ApplyAccessActivity extends AppCompatActivity implements View.OnCli
                 Bitmap bm = BitmapFactory.decodeFile(fileName);
                 personImageView.setImageBitmap(bm);//想图像显示在ImageView视图上，private ImageView img;
                 personImageView.setBackgroundResource(0);
+                imageFlag = 1;
 
                 Log.i(TAG,fileName);
                 File myCaptureFile = new File(fileName);
