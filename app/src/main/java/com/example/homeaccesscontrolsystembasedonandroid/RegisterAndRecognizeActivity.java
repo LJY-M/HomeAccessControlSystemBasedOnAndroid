@@ -185,12 +185,12 @@ public class RegisterAndRecognizeActivity extends BaseActivity
         if (intentThatStarted != null) {
             if (intentThatStarted.hasExtra("openMode")) {
                 verification = intentThatStarted.getStringExtra("openMode");
-                if (verification.equals("authorized")) {
-                    Toast.makeText(RegisterAndRecognizeActivity.this, "您已被授权", Toast.LENGTH_SHORT).show();
-                }
-                else if (verification.equals("unauthorized")) {
-                    Toast.makeText(RegisterAndRecognizeActivity.this, "您未被授权", Toast.LENGTH_SHORT).show();
-                }
+//                if (verification.equals("authorized")) {
+//                    Toast.makeText(RegisterAndRecognizeActivity.this, "您已被授权", Toast.LENGTH_SHORT).show();
+//                }
+//                else if (verification.equals("unauthorized")) {
+//                    Toast.makeText(RegisterAndRecognizeActivity.this, "您未被授权", Toast.LENGTH_SHORT).show();
+//                }
             }
         }
 
@@ -234,7 +234,7 @@ public class RegisterAndRecognizeActivity extends BaseActivity
             verificationLinearLayout.setVisibility(View.VISIBLE);
         }
         else {
-            Toast.makeText(RegisterAndRecognizeActivity.this, verification, Toast.LENGTH_SHORT).show();
+            Toast.makeText(RegisterAndRecognizeActivity.this, "您未被授权", Toast.LENGTH_SHORT).show();
             switchLivenessDetect.setVisibility(View.INVISIBLE);
             verificationLinearLayout.setVisibility(View.INVISIBLE);
         }
