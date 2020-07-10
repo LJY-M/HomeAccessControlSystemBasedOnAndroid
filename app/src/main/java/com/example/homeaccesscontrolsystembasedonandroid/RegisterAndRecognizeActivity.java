@@ -731,7 +731,9 @@ public class RegisterAndRecognizeActivity extends BaseActivity
                             }
                             requestFeatureStatusMap.put(requestId, RequestFeatureStatus.SUCCEED);
                             faceHelper.setName(requestId, getString(R.string.recognize_success_notice, compareResult.getUserName()));
-                            Toast.makeText(RegisterAndRecognizeActivity.this, "识别成功，欢迎回来", Toast.LENGTH_LONG).show();
+                            if (verification.equals("unauthorized")) {
+                                Toast.makeText(RegisterAndRecognizeActivity.this, "识别成功，欢迎回来", Toast.LENGTH_LONG).show();
+                            }
 
                         } else {
                             faceHelper.setName(requestId, getString(R.string.recognize_failed_notice, "NOT_REGISTERED"));
