@@ -59,6 +59,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         switch (select) {
             case R.id.main_button_open_door:
                 Log.i(TAG, "Clicked Button Open Door.");
+                Intent intentToFaceRecognize = new Intent(MainActivity.this, RegisterAndRecognizeActivity.class);
+                intentToFaceRecognize.putExtra("openMode", "unauthorized");
+                startActivity(intentToFaceRecognize);
                 break;
             case R.id.main_button_apply_access:
                 Log.i(TAG, "Clicked Button Apply Access.");

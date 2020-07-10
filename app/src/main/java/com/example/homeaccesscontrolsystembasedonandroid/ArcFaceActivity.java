@@ -101,7 +101,10 @@ public class ArcFaceActivity extends AppCompatActivity {
      * @param view
      */
     public void jumpToFaceRecognizeActivity(View view) {
-        checkLibraryAndJump(RegisterAndRecognizeActivity.class);
+//        checkLibraryAndJump(RegisterAndRecognizeActivity.class);
+        Intent intentToFaceRecognizeActivity = new Intent(ArcFaceActivity.this, RegisterAndRecognizeActivity.class);
+        intentToFaceRecognizeActivity.putExtra("openMode","authorized");
+        startActivity(intentToFaceRecognizeActivity);
     }
 
     /**

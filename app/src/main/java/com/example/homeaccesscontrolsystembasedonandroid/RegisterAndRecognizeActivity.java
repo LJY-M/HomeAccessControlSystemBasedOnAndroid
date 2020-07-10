@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.Manifest;
+import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.graphics.Point;
 import android.hardware.Camera;
@@ -19,7 +20,9 @@ import android.view.View;
 import android.view.ViewTreeObserver;
 import android.view.WindowManager;
 import android.widget.CompoundButton;
+import android.widget.LinearLayout;
 import android.widget.Switch;
+import android.widget.Toast;
 
 import com.arcsoft.face.AgeInfo;
 import com.arcsoft.face.ErrorInfo;
@@ -170,10 +173,27 @@ public class RegisterAndRecognizeActivity extends BaseActivity
 
     };
 
+    private String verification = "wait";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register_and_recognize);
+
+        Intent intentThatStarted = getIntent();
+
+        if (intentThatStarted != null) {
+            if (intentThatStarted.hasExtra("openMode")) {
+                verification = intentThatStarted.getStringExtra("openMode");
+                if (verification.equals("authorized")) {
+                    Toast.makeText(RegisterAndRecognizeActivity.this, "您已被授权", Toast.LENGTH_SHORT).show();
+                }
+                else if (verification.equals("unauthorized")) {
+                    Toast.makeText(RegisterAndRecognizeActivity.this, "您未被授权", Toast.LENGTH_SHORT).show();
+                }
+            }
+        }
+
         //保持亮屏
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 
@@ -205,6 +225,20 @@ public class RegisterAndRecognizeActivity extends BaseActivity
                 livenessDetect = isChecked;
             }
         });
+
+        LinearLayout verificationLinearLayout = findViewById(R.id.single_camera_verification);
+
+        if (verification.equals("authorized")) {
+            Toast.makeText(RegisterAndRecognizeActivity.this, "您已被授权", Toast.LENGTH_SHORT).show();
+            switchLivenessDetect.setVisibility(View.VISIBLE);
+            verificationLinearLayout.setVisibility(View.VISIBLE);
+        }
+        else {
+            Toast.makeText(RegisterAndRecognizeActivity.this, verification, Toast.LENGTH_SHORT).show();
+            switchLivenessDetect.setVisibility(View.INVISIBLE);
+            verificationLinearLayout.setVisibility(View.INVISIBLE);
+        }
+
         RecyclerView recyclerShowFaceInfo = findViewById(R.id.single_camera_recycler_view_person);
         compareResultList = new ArrayList<CompareResult>();
         adapter = new FaceSearchResultAdapter(compareResultList, this);

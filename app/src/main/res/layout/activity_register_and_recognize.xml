@@ -26,6 +26,7 @@
         android:text="@string/liveness_detect" />
 
     <LinearLayout
+        android:id="@+id/single_camera_verification"
         android:layout_margin="@dimen/common_bottom_margin"
         android:layout_gravity="bottom|end"
         android:orientation="vertical"
