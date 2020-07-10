@@ -63,12 +63,12 @@
 <!--            android:onClick="jumpToIrFaceRecognizeActivity"-->
 <!--            android:text="@string/page_ir_face_recognize" />-->
 
-<!--        <Button-->
-<!--            android:gravity="center"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:onClick="jumpToBatchRegisterActivity"-->
-<!--            android:text="@string/page_face_manage" />-->
+        <Button
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="jumpToBatchRegisterActivity"
+            android:text="@string/page_face_manage" />
     </LinearLayout>
 
 </RelativeLayout>

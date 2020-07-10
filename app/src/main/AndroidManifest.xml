@@ -29,6 +29,11 @@
         <activity android:name=".ArcFaceActivity" />
         <activity android:name=".ManagementActivity" />
         <activity android:name=".ApplyAccessActivity" />
+
+        <activity
+            android:name=".FaceManageActivity"
+            android:launchMode="singleTop" />
+
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

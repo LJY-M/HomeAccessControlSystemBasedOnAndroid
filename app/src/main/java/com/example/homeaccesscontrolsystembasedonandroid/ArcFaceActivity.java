@@ -96,6 +96,15 @@ public class ArcFaceActivity extends AppCompatActivity {
     }
 
     /**
+     * 批量注册和删除功能
+     *
+     * @param view
+     */
+    public void jumpToBatchRegisterActivity(View view) {
+        checkLibraryAndJump(FaceManageActivity.class);
+    }
+
+    /**
      * 打开相机，RGB活体检测，人脸注册，人脸识别
      *
      * @param view
