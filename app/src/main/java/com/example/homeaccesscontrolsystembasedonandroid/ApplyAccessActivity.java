@@ -21,6 +21,8 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.example.homeaccesscontrolsystembasedonandroid.util.ConfigUtil;
+
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -38,6 +40,8 @@ public class ApplyAccessActivity extends AppCompatActivity implements View.OnCli
     private Button addImageButton;
     private EditText remarkEditText;
     private Button commitButton;
+
+    private String[] receiverAddress;
 
     String fileName = Environment.getExternalStorageDirectory().getPath()+"/DCIM/Camera/"+ "123456.jpg";
 
@@ -58,6 +62,9 @@ public class ApplyAccessActivity extends AppCompatActivity implements View.OnCli
         remarkEditText = findViewById(R.id.apply_access_remark_edit);
         commitButton = findViewById(R.id.apply_access_commit_apply);
         commitButton.setOnClickListener(this);
+
+        receiverAddress = new String[1];
+        receiverAddress[0] = ConfigUtil.getEmailAddress(ApplyAccessActivity.this);
 
         StrictMode.VmPolicy.Builder builder = new StrictMode.VmPolicy.Builder();
         StrictMode.setVmPolicy(builder.build());
@@ -103,7 +110,9 @@ public class ApplyAccessActivity extends AppCompatActivity implements View.OnCli
                             sender.setMessage("2958146072@qq.com", "有一份访客申请等待处理", remarkString);
                             //设置收件人的邮箱
 
-                            sender.setReceiver(new String[]{"ljy_miao@foxmail.com"});
+//                            sender.setReceiver(new String[]{"ljy_miao@foxmail.com"});
+                            sender.setReceiver(receiverAddress);
+
                             String filPath = "/storage/emulated/0/DCIM/Camera/123456.JPG";
                             File file = new File(filPath);
                             if(file.exists()) {

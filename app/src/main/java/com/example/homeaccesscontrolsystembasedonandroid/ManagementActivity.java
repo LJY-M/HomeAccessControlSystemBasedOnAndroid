@@ -10,6 +10,7 @@ import android.widget.Button;
 public class ManagementActivity extends AppCompatActivity implements View.OnClickListener{
 
     private Button arcFaceButton;
+    private Button userInfoButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,6 +19,8 @@ public class ManagementActivity extends AppCompatActivity implements View.OnClic
 
         arcFaceButton = findViewById(R.id.management_arc_face_button);
         arcFaceButton.setOnClickListener(this);
+        userInfoButton = findViewById(R.id.management_user_info_button);
+        userInfoButton.setOnClickListener(this);
     }
 
     @Override
@@ -27,6 +30,10 @@ public class ManagementActivity extends AppCompatActivity implements View.OnClic
             case R.id.management_arc_face_button:
                 Intent intentToArcFaceActivity = new Intent(ManagementActivity.this, ArcFaceActivity.class);
                 startActivity(intentToArcFaceActivity);
+                break;
+            case R.id.management_user_info_button:
+                Intent intentToUserInfoSettingActivity = new Intent(ManagementActivity.this, UserInfoSettingActivity.class);
+                startActivity(intentToUserInfoSettingActivity);
                 break;
         }
     }

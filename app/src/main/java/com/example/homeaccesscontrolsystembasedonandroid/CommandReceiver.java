@@ -10,6 +10,8 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
 
+import com.example.homeaccesscontrolsystembasedonandroid.util.ConfigUtil;
+
 public class CommandReceiver extends BroadcastReceiver {
 
     String TAG = "  CommandReceiver";
@@ -17,7 +19,8 @@ public class CommandReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
 
-        String commander = "15071345606";
+//        String commander = "15071345606";
+        String commander = ConfigUtil.getPhoneNumber(context);
 
         String openCommand = "open";
         String refuseCommand = "refuse";
@@ -36,7 +39,7 @@ public class CommandReceiver extends BroadcastReceiver {
             Log.i(TAG, body);
 
             if (number.contains(commander)) {
-                Log.i(TAG,"Successfully receiving instructions from the commander!");
+                Log.i(TAG,"Successfully receiving instructions from the commander!" + " :" + commander);
                 if (body.contains(openCommand)) {
                     Log.i(TAG, "Access authorized");
                     Toast.makeText(context, "您的申请已通过！户主马上回来，请进屋稍等片刻。", Toast.LENGTH_LONG).show();

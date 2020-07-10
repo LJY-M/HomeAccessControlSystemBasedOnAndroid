@@ -11,6 +11,45 @@ public class ConfigUtil {
     private static final String FT_ORIENT = "ftOrientPriority";
     private static final String MAC_PRIORITY = "macPriority";
 
+    private static final String PHONE_NUMBER = "phoneNumber";
+    private static final String EMAIL_ADDRESS = "emailAddress";
+
+    public static boolean setPhoneNumber(Context context, String phoneNumber) {
+        if (context == null) {
+            return false;
+        }
+        SharedPreferences sharedPreferences = context.getSharedPreferences(APP_NAME, Context.MODE_PRIVATE);
+        return sharedPreferences.edit()
+                .putString(PHONE_NUMBER, phoneNumber)
+                .commit();
+    }
+
+    public static String getPhoneNumber(Context context) {
+        if (context == null) {
+            return "";
+        }
+        SharedPreferences sharedPreferences = context.getSharedPreferences(APP_NAME, Context.MODE_PRIVATE);
+        return sharedPreferences.getString(PHONE_NUMBER, "");
+    }
+
+    public static boolean setEmailAddress(Context context, String emailAddress) {
+        if (context == null) {
+            return false;
+        }
+        SharedPreferences sharedPreferences = context.getSharedPreferences(APP_NAME, Context.MODE_PRIVATE);
+        return sharedPreferences.edit()
+                .putString(EMAIL_ADDRESS, emailAddress)
+                .commit();
+    }
+
+    public static String getEmailAddress(Context context) {
+        if (context == null) {
+            return "";
+        }
+        SharedPreferences sharedPreferences = context.getSharedPreferences(APP_NAME, Context.MODE_PRIVATE);
+        return sharedPreferences.getString(EMAIL_ADDRESS, "");
+    }
+
     public static boolean setTrackedFaceCount(Context context, int trackedFaceCount) {
         if (context == null) {
             return false;

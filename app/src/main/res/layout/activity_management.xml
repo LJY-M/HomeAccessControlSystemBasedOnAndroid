@@ -7,6 +7,17 @@
     tools:context=".ManagementActivity">
 
     <Button
+        android:id="@+id/management_user_info_button"
+        android:layout_width="300dp"
+        android:layout_height="150dp"
+        android:text="用户信息"
+        android:textSize="24sp"
+        android:layout_marginLeft="64dp"
+        android:layout_marginTop="308dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
         android:id="@+id/management_arc_face_button"
         android:layout_width="300dp"
         android:layout_height="150dp"

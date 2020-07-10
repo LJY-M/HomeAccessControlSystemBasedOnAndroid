@@ -24,16 +24,14 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".RegisterAndRecognizeActivity"></activity>
-<!--        <activity android:name=".activity.BaseActivity" />-->
+        <activity android:name=".UserInfoSettingActivity"></activity>
+        <activity android:name=".RegisterAndRecognizeActivity" /> <!-- <activity android:name=".activity.BaseActivity" /> -->
         <activity android:name=".ArcFaceActivity" />
         <activity android:name=".ManagementActivity" />
         <activity android:name=".ApplyAccessActivity" />
-
         <activity
             android:name=".FaceManageActivity"
             android:launchMode="singleTop" />
-
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
