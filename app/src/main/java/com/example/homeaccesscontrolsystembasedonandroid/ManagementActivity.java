@@ -11,6 +11,7 @@ public class ManagementActivity extends AppCompatActivity implements View.OnClic
 
     private Button arcFaceButton;
     private Button userInfoButton;
+    private Button visitorsRecordButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,6 +22,8 @@ public class ManagementActivity extends AppCompatActivity implements View.OnClic
         arcFaceButton.setOnClickListener(this);
         userInfoButton = findViewById(R.id.management_user_info_button);
         userInfoButton.setOnClickListener(this);
+        visitorsRecordButton = findViewById(R.id.management_visitors_record_button);
+        visitorsRecordButton.setOnClickListener(this);
     }
 
     @Override
@@ -34,6 +37,10 @@ public class ManagementActivity extends AppCompatActivity implements View.OnClic
             case R.id.management_user_info_button:
                 Intent intentToUserInfoSettingActivity = new Intent(ManagementActivity.this, UserInfoSettingActivity.class);
                 startActivity(intentToUserInfoSettingActivity);
+                break;
+            case R.id.management_visitors_record_button:
+                Intent intentToVisitorsRecordActivity = new Intent(ManagementActivity.this, VisitorsRecordActivity.class);
+                startActivity(intentToVisitorsRecordActivity);
                 break;
         }
     }

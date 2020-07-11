@@ -79,7 +79,8 @@ public class CommandReceiver extends BroadcastReceiver {
                     Log.i(TAG, "Access authorized");
 
                     ContentValues values = new ContentValues();
-                    values.put(VisitorsRecordContract.VisitorsRecordEntry.COLUMN_APPLICATION_RESULT, "authorized");
+                    values.put(VisitorsRecordContract.VisitorsRecordEntry.COLUMN_APPLICATION_RESULT,
+                            VisitorsRecordContract.VisitorsRecordEntry.AUTHORIZED_RESULT);
                     mVisitorsRecordDBHelper.getWritableDatabase()
                             .update(VisitorsRecordContract.VisitorsRecordEntry.TABLE_NAME,
                                     values,
@@ -92,7 +93,8 @@ public class CommandReceiver extends BroadcastReceiver {
                     Log.i(TAG, "Access denied");
 
                     ContentValues values = new ContentValues();
-                    values.put(VisitorsRecordContract.VisitorsRecordEntry.COLUMN_APPLICATION_RESULT, "denied");
+                    values.put(VisitorsRecordContract.VisitorsRecordEntry.COLUMN_APPLICATION_RESULT,
+                            VisitorsRecordContract.VisitorsRecordEntry.DENIED_RESULT);
                     mVisitorsRecordDBHelper.getWritableDatabase()
                             .update(VisitorsRecordContract.VisitorsRecordEntry.TABLE_NAME,
                                     values,

@@ -24,7 +24,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".UserInfoSettingActivity"></activity>
+        <activity android:name=".VisitorsRecordActivity"></activity>
+        <activity android:name=".UserInfoSettingActivity" />
         <activity android:name=".RegisterAndRecognizeActivity" /> <!-- <activity android:name=".activity.BaseActivity" /> -->
         <activity android:name=".ArcFaceActivity" />
         <activity android:name=".ManagementActivity" />

@@ -11,6 +11,9 @@ public class VisitorsRecordContract {
         public static final String COLUMN_RECORDS_TIME = "recordsTime";
         public static final String COLUMN_APPLICATION_RESULT = "applicationResult";
 
+        public static final String AUTHORIZED_RESULT = "authorized";
+        public static final String DENIED_RESULT = "denied";
+
         public static final String DEFAULT_RESULT = "default";
         public static final String DEFAULT_TIME = "default";
     }
