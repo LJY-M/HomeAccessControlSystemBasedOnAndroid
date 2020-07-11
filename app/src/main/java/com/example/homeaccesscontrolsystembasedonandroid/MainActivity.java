@@ -23,6 +23,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private EditText ManageLoginEdit;
 
+    private VisitorsRecordDBHelper mVisitorsRecordDBHelper = new VisitorsRecordDBHelper(this);
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,6 +38,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         ApplyAccessButton.setOnClickListener(this);
         ManageLoginButton = findViewById(R.id.main_button_manage_login);
         ManageLoginButton.setOnClickListener(this);
+
+        TestUtil.getAllVisitorsRecord(mVisitorsRecordDBHelper.getReadableDatabase());
 
         String[] PERMISSIONS = {
                 "android.permission.CAMERA",

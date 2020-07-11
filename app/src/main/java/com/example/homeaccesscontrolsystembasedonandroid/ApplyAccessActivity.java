@@ -5,10 +5,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
+import android.content.ContentValues;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -24,10 +26,14 @@ import android.widget.Toast;
 import com.example.homeaccesscontrolsystembasedonandroid.util.ConfigUtil;
 
 import java.io.BufferedOutputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.TimeZone;
 
 import javax.mail.MessagingException;
 import javax.mail.internet.AddressException;
@@ -35,6 +41,8 @@ import javax.mail.internet.AddressException;
 public class ApplyAccessActivity extends AppCompatActivity implements View.OnClickListener{
 
     String TAG = "  ApplyAccessActivity";
+
+    private VisitorsRecordDBHelper mVisitorsRecordDBHelper = new VisitorsRecordDBHelper(this);
 
     private ImageView personImageView;
     private Button addImageButton;
@@ -73,7 +81,21 @@ public class ApplyAccessActivity extends AppCompatActivity implements View.OnCli
 
     }
 
-    @Override
+    //Bitmap to byte[]
+    public byte[] bmpToByteArray(Bitmap bmp) {
+        //Default size is 32 bytes
+        ByteArrayOutputStream bos = new ByteArrayOutputStream();
+        try {
+            bmp.compress(Bitmap.CompressFormat.JPEG, 100, bos);
+            bos.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return bos.toByteArray();
+    }
+
+
+        @Override
     public void onClick(View v) {
         int select = v.getId();
         switch (select) {
@@ -97,6 +119,27 @@ public class ApplyAccessActivity extends AppCompatActivity implements View.OnCli
                     Log.i(TAG, "备注内容为空.");
                     break;
                 }
+
+                SimpleDateFormat sdf = new SimpleDateFormat();// 格式化时间
+                sdf.applyPattern("yyyy-MM-dd HH:mm:ss a");// a为am/pm的标记
+                sdf.setTimeZone(TimeZone.getTimeZone("GMT+08"));
+                Date date = new Date();// 获取当前时间
+                String currentTime = sdf.format(date);
+                System.out.println("现在时间：" + currentTime); // 输出已经格式化的现在时间（24小时制）
+
+                Bitmap bitmap = ((BitmapDrawable)personImageView.getDrawable()).getBitmap();
+
+                ContentValues values = new ContentValues();
+                values.put(VisitorsRecordContract.VisitorsRecordEntry.COLUMN_VISITOR_IMAGE, bmpToByteArray(bitmap));
+                values.put(VisitorsRecordContract.VisitorsRecordEntry.COLUMN_REMARK_INFO, remarkString);
+                values.put(VisitorsRecordContract.VisitorsRecordEntry.COLUMN_RECORDS_TIME, currentTime);
+                values.put(VisitorsRecordContract.VisitorsRecordEntry.COLUMN_APPLICATION_RESULT,
+                        VisitorsRecordContract.VisitorsRecordEntry.DEFAULT_RESULT);
+
+                mVisitorsRecordDBHelper.getWritableDatabase()
+                        .insert(VisitorsRecordContract.VisitorsRecordEntry.TABLE_NAME,
+                                null, values);
+
                 Toast.makeText(this, "正在发送申请，请稍等片刻。", Toast.LENGTH_LONG).show();
                 new Thread(new Runnable() {
 
