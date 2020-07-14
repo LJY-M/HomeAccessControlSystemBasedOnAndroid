@@ -13,6 +13,25 @@ public class ConfigUtil {
 
     private static final String PHONE_NUMBER = "phoneNumber";
     private static final String EMAIL_ADDRESS = "emailAddress";
+    private static final String ADMIN_PASSWORD = "adminPassword";
+
+    public static boolean setAdminPassword(Context context, String adminPassword) {
+        if (context == null) {
+            return false;
+        }
+        SharedPreferences sharedPreferences = context.getSharedPreferences(APP_NAME, Context.MODE_PRIVATE);
+        return sharedPreferences.edit()
+                .putString(ADMIN_PASSWORD, adminPassword)
+                .commit();
+    }
+
+    public static String getAdminPassword(Context context) {
+        if (context == null) {
+            return "";
+        }
+        SharedPreferences sharedPreferences = context.getSharedPreferences(APP_NAME, Context.MODE_PRIVATE);
+        return sharedPreferences.getString(ADMIN_PASSWORD, "0000");
+    }
 
     public static boolean setPhoneNumber(Context context, String phoneNumber) {
         if (context == null) {

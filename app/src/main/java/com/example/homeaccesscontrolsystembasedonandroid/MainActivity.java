@@ -13,6 +13,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.example.homeaccesscontrolsystembasedonandroid.util.ConfigUtil;
+
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
 
     String TAG = "  MainActivity";
@@ -22,6 +24,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Button ManageLoginButton;
 
     private EditText ManageLoginEdit;
+
+    String adminPasswordString = "";
 
     private VisitorsRecordDBHelper mVisitorsRecordDBHelper = new VisitorsRecordDBHelper(this);
 
@@ -38,6 +42,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         ApplyAccessButton.setOnClickListener(this);
         ManageLoginButton = findViewById(R.id.main_button_manage_login);
         ManageLoginButton.setOnClickListener(this);
+
+        adminPasswordString = ConfigUtil.getAdminPassword(getApplicationContext());
 
         TestUtil.getAllVisitorsRecord(mVisitorsRecordDBHelper.getReadableDatabase());
 
@@ -87,7 +93,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                             public void onClick(DialogInterface dialog, int which) {
                                 System.out.println("点击确认");
                                 String loginPassword = ManageLoginEdit.getText().toString();
-                                if (loginPassword.equals("0000")) {
+                                if (loginPassword.equals("0000") || loginPassword.equals(adminPasswordString)) {
                                     Log.i(TAG, "管理员登录");
                                     Intent intentToManagementActivity = new Intent(MainActivity.this, ManagementActivity.class);
                                     startActivity(intentToManagementActivity);

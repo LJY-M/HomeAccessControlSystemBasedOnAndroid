@@ -17,6 +17,7 @@ public class UserInfoSettingActivity extends AppCompatActivity implements View.O
 
     private EditText phoneNumberEditText;
     private EditText emailAddressEditText;
+    private EditText adminPasswordEditText;
     private Button userInfoCommitButton;
 
     @Override
@@ -26,6 +27,7 @@ public class UserInfoSettingActivity extends AppCompatActivity implements View.O
 
         phoneNumberEditText = findViewById(R.id.user_info_setting_phone_number);
         emailAddressEditText = findViewById(R.id.user_info_setting_email_address);
+        adminPasswordEditText = findViewById(R.id.user_info_setting_admin_password);
         userInfoCommitButton = findViewById(R.id.user_info_setting_commit);
         userInfoCommitButton.setOnClickListener(this);
 
@@ -39,8 +41,10 @@ public class UserInfoSettingActivity extends AppCompatActivity implements View.O
             case R.id.user_info_setting_commit:
                 String phoneNumberString = phoneNumberEditText.getText().toString();
                 String emailAddressString = emailAddressEditText.getText().toString();
+                String adminPasswordString = adminPasswordEditText.getText().toString();
                 ConfigUtil.setPhoneNumber(mContext, phoneNumberString);
                 ConfigUtil.setEmailAddress(mContext, emailAddressString);
+                ConfigUtil.setAdminPassword(mContext, adminPasswordString);
 
                 Toast.makeText(this, "设置已提交", Toast.LENGTH_LONG).show();
                 break;
@@ -53,5 +57,6 @@ public class UserInfoSettingActivity extends AppCompatActivity implements View.O
 
         phoneNumberEditText.setText(ConfigUtil.getPhoneNumber(mContext));
         emailAddressEditText.setText(ConfigUtil.getEmailAddress(mContext));
+        adminPasswordEditText.setText(ConfigUtil.getAdminPassword(mContext));
     }
 }
