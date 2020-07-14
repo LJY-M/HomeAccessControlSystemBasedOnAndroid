@@ -21,10 +21,15 @@
 
         <Button
             android:gravity="center"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_width="300dp"
+            android:layout_height="100dp"
+            android:background="@drawable/shadow_green"
             android:onClick="activeEngine"
             android:text="@string/active_engine" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="50dp" />
 
 
 <!--        <Button-->
@@ -51,10 +56,15 @@
 
         <Button
             android:gravity="center"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_width="300dp"
+            android:layout_height="100dp"
+            android:background="@drawable/shadow_orange"
             android:onClick="jumpToFaceRecognizeActivity"
             android:text="@string/page_face_recognize" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="50dp" />
 
 <!--        <Button-->
 <!--            android:gravity="center"-->
@@ -65,8 +75,9 @@
 
         <Button
             android:gravity="center"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_width="300dp"
+            android:layout_height="100dp"
+            android:background="@drawable/shadow_blue"
             android:onClick="jumpToBatchRegisterActivity"
             android:text="@string/page_face_manage" />
     </LinearLayout>

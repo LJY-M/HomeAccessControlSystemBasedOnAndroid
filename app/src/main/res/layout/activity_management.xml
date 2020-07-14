@@ -14,6 +14,7 @@
         android:textSize="24sp"
         android:layout_marginLeft="64dp"
         android:layout_marginTop="108dp"
+        android:background="@drawable/shadow_yellow"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -25,6 +26,7 @@
         android:textSize="24sp"
         android:layout_marginLeft="64dp"
         android:layout_marginTop="308dp"
+        android:background="@drawable/shadow_blue"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -36,6 +38,7 @@
         android:textSize="24sp"
         android:layout_marginLeft="64dp"
         android:layout_marginTop="508dp"
+        android:background="@drawable/shadow_green"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

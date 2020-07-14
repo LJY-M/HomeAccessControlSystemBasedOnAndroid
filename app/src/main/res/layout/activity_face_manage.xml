@@ -18,15 +18,17 @@
         <Button
             android:layout_gravity="center_horizontal"
             android:onClick="batchRegister"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="300dp"
+            android:layout_height="100dp"
+            android:background="@drawable/shadow_green"
             android:text="@string/batch_process_batch_register"/>
         <Button
             android:layout_margin="50dp"
             android:layout_gravity="center_horizontal"
             android:onClick="clearFaces"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="300dp"
+            android:layout_height="100dp"
+            android:background="@drawable/bg_shadow_epidemic2"
             android:text="@string/batch_process_clear_faces"/>
         <TextView
             android:layout_margin="50dp"
